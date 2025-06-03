@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Velnova Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      --primary-color: #00ffe1;
+      --secondary-color: #ffa3fd;
+      --text-color: #ddd;
+      --title-color: #00ffe1;
+    }
+    [data-theme="light"] {
+      --bg-gradient: linear-gradient(to top, #fceabb, #f8b500);
+      --primary-color: #24243e;
+      --secondary-color: #1c1c3c;
+      --text-color: #000;
+      --title-color: #000;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-color);
+      padding: 40px 20px;
+      transition: all 0.4s ease;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      color: var(--title-color);
+    }
+    p.tagline {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #ccc;
+    }
+    .section {
+      margin: 60px 0;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: var(--secondary-color);
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 28px;
+      background: var(--primary-color);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    .tool-card {
+      background: linear-gradient(135deg, #00f2ff, #9d00ff);
+      color: white;
+      padding: 30px;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffe1;
+      font-size: 1.2rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    input[type="email"] {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 80%;
+      max-width: 300px;
+      margin-top: 10px;
+    }
+    form button {
+      margin-top: 15px;
+      background: #00ffe1;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      margin-top: 80px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 20;
+    }
+    .bg-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      pointer-events: none;
+      transition: background-image 0.6s ease;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-btn" onclick="toggleTheme()">🌓</button>
+  <div class="bg-scene" id="bgScene"></div>
+  <div class="container">
+    <h1>Velnova Technologies</h1>
+    <p class="tagline">Empowering the future through powerful digital tools.</p><div class="section">
+  <h2>🚀 About Us</h2>
+
+<p>🧠 1. What is Velnova? (Mission Statement)</p>
+<p>Velnova Technologies is on a mission to simplify digital work through AI-powered tools. We focus on building lightweight, efficient, and smart applications that empower creators, businesses, and everyday users.</p>
+<br>
+<p>🚀 2. Why Choose Us</p>
+<ul style="text-align: left; display: inline-block;">
+  <li>✅ Clean and intuitive user experience</li>
+  <li>🚀 Built for speed, simplicity, and performance</li>
+  <li>🤖 Smart automation features</li>
+  <li>🔐 Secure, privacy-respecting tools</li>
+  <li>🌍 Scalable across devices and industries</li>
+</ul>
+<br><br>
+<p>🔧 3. What We’re Building</p>
+<p>From AI chat assistants to marketing automation, our tools are crafted with one goal: saving your time and multiplying your impact.
+<br><br>
+We're currently working on:</p>
+<ul style="text-align: left; display: inline-block;">
+  <li>✨ AI Chat Assistant</li>
+  <li>📈 Auto Report Generator</li>
+  <li>📨 Email Response Automation</li>
+</ul>
+<p>More coming soon...</p>
+<br><br>
+<p>🌟 4. Our Values</p>
+<ul style="text-align: left; display: inline-block;">
+  <li>Innovation without complexity</li>
+  <li>Privacy-first development</li>
+  <li>Community-driven improvements</li>
+  <li>Minimal design, maximum function</li>
+</ul>
+<br><br>
+<p>🧑‍💻 5. About the Founder</p>
+<p>Hey, I'm Arhaam Habib — a dreamer, builder, and the mind behind Velnova. I believe you don’t need a giant team or millions of dollars to build something world-class.<br>
+Velnova is my step toward that belief.<br>
+This is just the beginning.</p>
+<br>
+<p>📞 6. Need a Custom Tool?</p>
+<p>Have a specific idea or need a custom-built AI tool?<br>
+Let's collaborate — Velnova can build it for you.<br>
+💬 DM us on Instagram:<br>
+<a href="https://www.instagram.com/velnova_technologies?igsh=MWs1YWM0OGE0YzI4ZQ==" target="_blank">@velnova_technologies</a><br>
+or email <a href="mailto:velnovatechnologies@gmail.com">velnovatechnologies@gmail.com</a></p>
+<br>
+<p>📅 7. What’s Coming in 2025</p>
+<ul style="text-align: left; display: inline-block;">
+  <li>A free tool library</li>
+  <li>Instant AI responses</li>
+  <li>Login/dashboard for premium users</li>
+  <li>SaaS tools for businesses and creators</li>
+</ul>
+    </div><div class="section">
+  <h2>🛠 Our Tools</h2>
+  <div class="tool-card">⚡ AI Chat Assistant – Coming Soon</div>
+  <div class="tool-card">📊 Auto-Report Generator – Coming Soon</div>
+  <div class="tool-card">📧 Email Automation Bot – Coming Soon</div>
+</div>
+
+<div class="section">
+  <h2>📬 Stay Updated</h2>
+  <form action="https://formsubmit.co/velnovatechnologies@gmail.com" method="POST">
+    <input type="email" name="email" placeholder="Enter your email" required>
+    <input type="hidden" name="_subject" value="New Subscriber!">
+    <input type="hidden" name="_template" value="table">
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
+
+<div class="section">
+  <h2>📫 Contact</h2>
+  <p>For collaborations, support, or custom requests, reach out to us:<br><br><strong>Email:</strong> <a href="mailto:velnovatechnologies@gmail.com">velnovatechnologies@gmail.com</a><br><strong>Instagram:</strong> <a href="https://instagram.com/arhaamhabib" target="_blank">@arhaamhabib</a></p>
+</div>
+
+<footer>
+  © 2025 Velnova Technologies. Built by Arhaam Habib with purpose 💡
+</footer>
+
+  </div>
+  <script>
+    const root = document.documentElement;
+    const scene = document.getElementById('bgScene');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;function setTheme(theme) {
+  document.body.setAttribute('data-theme', theme);
+  if (theme === 'light') {
+    scene.style.backgroundImage = "url('https://raw.githubusercontent.com/arhaam-habib/assets/main/day-village.png')";
+  } else {
+    scene.style.backgroundImage = "url('https://raw.githubusercontent.com/arhaam-habib/assets/main/night-planets.png')";
+  }
+}
+
+function toggleTheme() {
+  const current = document.body.getAttribute('data-theme');
+  setTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+setTheme(prefersDark ? 'dark' : 'light');
+
+  </script>
+</body>
+</html>
