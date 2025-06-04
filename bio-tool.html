@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insta Bio Generator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top left, #3a0ca3, #240046);
+      color: #fff;
+      padding: 30px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+      text-align: center;
+    }
+    h1 {
+      color: #e0b3ff;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #00ffe1;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .bio-box {
+      background: #3c096c;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #5a189a;
+    }
+    .copy-btn, .download-btn {
+      margin-top: 10px;
+      margin-right: 8px;
+      padding: 6px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .copy-btn { background: #ff6b6b; color: #fff; }
+    .download-btn { background: #00c896; color: #000; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔥 Insta Bio Generator</h1>
+    <label for="name">Your Name or Nickname:</label>
+    <input type="text" id="name" placeholder="e.g. Arhaam"><label for="mood">Select Your Vibe / Mood:</label>
+<select id="mood">
+  <option value="aesthetic">Aesthetic</option>
+  <option value="funny">Funny</option>
+  <option value="dark">Dark</option>
+  <option value="motivational">Motivational</option>
+  <option value="anime">Anime Lover</option>
+</select>
+
+<label for="interest">Your Interests (optional):</label>
+<input type="text" id="interest" placeholder="e.g. Cars, Editing">
+
+<button onclick="generateBio()">Generate Bio</button>
+<div id="result"></div>
+
+  </div>  <script>
+    const templates = {
+      aesthetic: [
+        `✨ {name} • just vibes & skies ✨`,
+        `Creating beauty in chaos. {interest}`,
+        `📸 {name} | aesthetic soul with {interest}`
+      ],
+      funny: [
+        `{name}, CEO of sleeping 😴`,
+        `I run on wifi and {interest}`,
+        `{name} | 1% human, 99% sarcasm 😂`
+      ],
+      dark: [
+        `⚫ {name} | shadows know my name`,
+        `Made of scars & silence. {interest}`,
+        `Not broken, just awakened. 🖤 {name}`
+      ],
+      motivational: [
+        `Dream big, hustle harder. – {name}`,
+        `{name} | Built from fire 🔥`,
+        `Every day is a new grind. 💪 {interest}`
+      ],
+      anime: [
+        `{name} 🔥 living in an anime arc`,
+        `Cursed with style | {interest}`,
+        `Just a shinobi trying to survive 🍥 – {name}`
+      ]
+    };
+
+    function generateBio() {
+      const name = document.getElementById("name").value.trim();
+      const mood = document.getElementById("mood").value;
+      const interest = document.getElementById("interest").value.trim();
+      const result = document.getElementById("result");
+
+      if (!name) {
+        alert("Please enter your name or nickname.");
+        return;
+      }
+
+      result.innerHTML = "";
+      templates[mood].forEach(template => {
+        const bio = template
+          .replace(/{name}/g, name)
+          .replace(/{interest}/g, interest || "life");
+
+        const box = document.createElement("div");
+        box.className = "bio-box";
+        box.innerHTML = `
+          <p>${bio}</p>
+          <button class='copy-btn' onclick='copyBio(this)'>Copy</button>
+          <button class='download-btn' onclick='downloadBio(this)'>Download</button>
+        `;
+        result.appendChild(box);
+      });
+    }
+
+    document.getElementById("interest").addEventListener("input", generateBio);
+
+    function copyBio(btn) {
+      const text = btn.parentElement.querySelector("p").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.innerText = "Copied!";
+        setTimeout(() => (btn.innerText = "Copy"), 1500);
+      });
+    }
+
+    function downloadBio(btn) {
+      const text = btn.parentElement.querySelector("p").innerText;
+      const blob = new Blob([text], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "insta_bio.txt";
+      link.click();
+    }
+  </script></body>
+</html>
