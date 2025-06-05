@@ -65,6 +65,20 @@
     }
     .copy-btn { background: #ff6b6b; color: #fff; }
     .download-btn { background: #00c896; color: #000; }
+    .loader {
+      margin: 20px auto;
+      border: 4px solid #ffffff33;
+      border-radius: 50%;
+      border-top: 4px solid #00ffe1;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      display: none;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -84,42 +98,68 @@
 <input type="text" id="interest" placeholder="e.g. Cars, Editing">
 
 <button onclick="generateBio()">Generate Bio</button>
+<div class="loader" id="loader"></div>
 <div id="result"></div>
 
   </div>  <script>
     const templates = {
       aesthetic: [
-        `✨ {name} • just vibes & skies ✨`,
-        `Creating beauty in chaos. {interest}`,
-        `📸 {name} | aesthetic soul with {interest}`
+        "✨ {name} • just vibes & skies ✨",
+        "📸 {name} | dreaming with {interest}",
+        "{name} • pastel skies and {interest}",
+        "Soul fed with {interest} • by {name}",
+        "💫 {name} in a world of {interest} & light",
+        "Lover of soft skies & {interest} – {name}"
       ],
       funny: [
-        `{name}, CEO of sleeping 😴`,
-        `I run on wifi and {interest}`,
-        `{name} | 1% human, 99% sarcasm 😂`
+        "{name} | 1% human, 99% sarcasm 😂",
+        "Certified napper 😴 — also likes {interest}",
+        "WiFi, memes & {interest}. That’s it.",
+        "{name} – living proof caffeine works ☕",
+        "Don’t grow up, it’s a trap 😅 | {interest} lover",
+        "Talks to pets like people & watches reels all day 🎬"
       ],
       dark: [
-        `⚫ {name} | shadows know my name`,
-        `Made of scars & silence. {interest}`,
-        `Not broken, just awakened. 🖤 {name}`
+        "⚫ {name} | shadows know my name",
+        "Made of scars & {interest} 💔",
+        "Not broken, just awakened. 🖤",
+        "{name} — silent storms brew inside",
+        "Smiling with bruises no one sees",
+        "Night walks, loud thoughts, {interest} dreams"
       ],
       motivational: [
-        `Dream big, hustle harder. – {name}`,
-        `{name} | Built from fire 🔥`,
-        `Every day is a new grind. 💪 {interest}`
+        "Dream big, hustle harder. – {name}",
+        "{name} | Built from fire 🔥",
+        "Every day is a new grind 💪 {interest}",
+        "From nothing to unstoppable 🚀",
+        "Goal getter • {name} • {interest} powered",
+        "Fuelled by coffee & purpose ☕✨"
       ],
       anime: [
-        `{name} 🔥 living in an anime arc`,
-        `Cursed with style | {interest}`,
-        `Just a shinobi trying to survive 🍥 – {name}`
+        "{name} 🔥 living in an anime arc",
+        "Just a shinobi in the real world 🍥",
+        "Powered by ramen & {interest} 🍜",
+        "{name} – Cursed with drip and destiny ⚔️",
+        "In a Genjutsu of {interest} dreams",
+        "Protagonist vibes only ✨ | {name}"
       ]
     };
 
+    function cleanInput(text) {
+      return text.replace(/["'`]+/g, "").trim();
+    }
+
+    function getRandom(arr, n = 3) {
+      const shuffled = [...arr].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, n);
+    }
+
     function generateBio() {
-      const name = document.getElementById("name").value.trim();
+      const name = cleanInput(document.getElementById("name").value);
       const mood = document.getElementById("mood").value;
-      const interest = document.getElementById("interest").value.trim();
+      const interest = cleanInput(document.getElementById("interest").value) || "life";
       const result = document.getElementById("result");
+      const loader = document.getElementById("loader");
 
       if (!name) {
         alert("Please enter your name or nickname.");
@@ -127,23 +167,23 @@
       }
 
       result.innerHTML = "";
-      templates[mood].forEach(template => {
-        const bio = template
-          .replace(/{name}/g, name)
-          .replace(/{interest}/g, interest || "life");
+      loader.style.display = "block";
 
-        const box = document.createElement("div");
-        box.className = "bio-box";
-        box.innerHTML = `
-          <p>${bio}</p>
-          <button class='copy-btn' onclick='copyBio(this)'>Copy</button>
-          <button class='download-btn' onclick='downloadBio(this)'>Download</button>
-        `;
-        result.appendChild(box);
-      });
+      setTimeout(() => {
+        loader.style.display = "none";
+        getRandom(templates[mood]).forEach(template => {
+          const bio = template.replace(/{name}/g, name).replace(/{interest}/g, interest);
+          const box = document.createElement("div");
+          box.className = "bio-box";
+          box.innerHTML = `
+            <p>${bio}</p>
+            <button class='copy-btn' onclick='copyBio(this)'>Copy</button>
+            <button class='download-btn' onclick='downloadBio(this)'>Download</button>
+          `;
+          result.appendChild(box);
+        });
+      }, 1000);
     }
-
-    document.getElementById("interest").addEventListener("input", generateBio);
 
     function copyBio(btn) {
       const text = btn.parentElement.querySelector("p").innerText;
